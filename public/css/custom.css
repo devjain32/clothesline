@@ -1,0 +1,24 @@
+/*********************************************************************************
+
+	Template Name: Boighor Bookshop Responsive Bootstrap4 Template  
+	Description: Template description
+	Version: 1.0
+	Note: This is custom css. All custom styles (user styles) declare here.
+
+**********************************************************************************/
+
+.clothesLineClothes {
+	color: green !important;
+}
+
+.subscribeSquare {
+	border: solid 5px;
+	background-color: aliceblue;
+	opacity: .7;
+	-webkit-transition: opacity .3s;
+	transition: opacity .3s;
+}
+.subscribeSquare:hover {
+	opacity: 1;
+	transition:.3s;
+}
