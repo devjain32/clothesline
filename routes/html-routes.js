@@ -6,13 +6,13 @@ var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function (app) {
 
-  app.get("/", function (req, res) {
-    // If the user already has an account send them to the members page
-    if (req.user) {
-      res.redirect("/members");
-    }
-    res.sendFile(path.join(__dirname, "../public/signup.html"));
-  });
+  // app.get("/", function (req, res) {
+  // If the user already has an account send them to the members page
+  //   if (req.user) {
+  //     res.redirect("/members");
+  //   }
+  //   res.sendFile(path.join(__dirname, "../public/signup.html"));
+  // });
 
   app.get("/home", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/index.html"));
@@ -30,7 +30,7 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../public/my-account.html"));
   });
   app.get("/instructions", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/instructions.html"));
+    res.sendFile(path.join(__dirname, "../public/instructions/instructions.html"));
   });
   app.get("/sustainability", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/sustainability.html"));
@@ -54,10 +54,16 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../public/instructions/shoppers/buying.html"));
   });
   app.get("/instructions/renters", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/instructions.html"));
+    res.sendFile(path.join(__dirname, "../public/instructions/instructions.html"));
   });
   app.get("/instructions/shoppers", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/instructions.html"));
+    res.sendFile(path.join(__dirname, "../public/instructions/instructions.html"));
+  });
+  app.get("/dashboard", isAuthenticated, function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/members.html"))
+  })
+  app.get("*", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/index.html"));
   });
   // app.get("/login", function (req, res) {
   //   // If the user already has an account send them to the members page
