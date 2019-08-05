@@ -18,6 +18,9 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../public/index.html"));
   });
   app.get("/shop", function (req, res) {
+    if (req.user) {
+      res.sendFile(path.join(__dirname, "../public/dashboard.html"));    //redirect("/members.html");
+    }
     res.sendFile(path.join(__dirname, "../public/shop.html"));
   });
   app.get("/contact", function (req, res) {
@@ -61,6 +64,9 @@ module.exports = function (app) {
   });
   app.get("/dashboard", isAuthenticated, function (req, res) {
     res.sendFile(path.join(__dirname, "../public/members.html"))
+  })
+  app.get("/mainpage", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/mypage.html"))
   })
   app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/index.html"));

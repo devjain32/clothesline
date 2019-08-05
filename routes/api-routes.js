@@ -16,6 +16,7 @@ module.exports = function (app) {
   // otherwise send back an error
   app.post("/api/signup", function (req, res) {
     db.User.create({
+      name: req.body.name,
       email: req.body.email,
       password: req.body.password
     })
@@ -49,4 +50,15 @@ module.exports = function (app) {
     }
     console.log(email, id)
   });
+  app.get("/api/check", function (req, res) {
+    if (!req.user) {
+      // The user is not logged in, send back an empty object
+      res.json({});
+    } else {
+      // Otherwise send back the user's email and id
+      // Sending back a password, even a hashed password, isn't a good idea
+      res.json({status: true})
+    }
+
+  })
 };
