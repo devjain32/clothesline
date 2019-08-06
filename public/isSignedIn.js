@@ -3,12 +3,20 @@ $(document).ready(function () {
     function checkUser() {
         $.get("/api/check", {})
             .then(function (res) {
-                console.log(res);
+                console.log(res.name);
                 if (res.status) {
-                    $(".isSignedIn").text("Signed in")
+                    $(".navStatus").html(`
+                    <span><a href="/logout">Sign Out</a></span>
+                    `)
+                    $(".textStatus").html(`Signed in`);
+                    $(".nameStatus").html("Welcome, " + res.name)
                 }
                 else {
-                    $(".isSignedIn").text("Not signed in")
+                    $(".navStatus").html(`
+                    <span><a href="/registration">Sign In</a></span>
+                    <span><a href="/registration">Create An Account</a></span>
+                    `)
+                    $(".textStatus").html(`Not signed in`)
                 }
                 // If there's an error, log the error
             })

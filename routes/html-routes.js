@@ -21,7 +21,9 @@ module.exports = function (app) {
     if (req.user) {
       res.sendFile(path.join(__dirname, "../public/dashboard.html"));    //redirect("/members.html");
     }
-    res.sendFile(path.join(__dirname, "../public/shop.html"));
+    else {
+      res.sendFile(path.join(__dirname, "../public/shop.html"));
+    }
   });
   app.get("/contact", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/contact.html"));
@@ -62,9 +64,9 @@ module.exports = function (app) {
   app.get("/instructions/shoppers", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/instructions/instructions.html"));
   });
-  app.get("/dashboard", isAuthenticated, function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/members.html"))
-  })
+  // app.get("/dashboard", isAuthenticated, function (req, res) {
+  //   res.sendFile(path.join(__dirname, "../public/members.html"))
+  // })
   app.get("/mainpage", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/mypage.html"))
   })
