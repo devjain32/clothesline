@@ -17,6 +17,7 @@ module.exports = function (app) {
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error
   app.post("/api/signup", function (req, res) {
+    
     db.User.create({
       name: req.body.name,
       email: req.body.email,
@@ -27,6 +28,7 @@ module.exports = function (app) {
         res.redirect(307, "/api/login");
       })
       .catch(function (err) {
+        console.log(err);
         res.status(401).json(err);
       });
   });
@@ -52,15 +54,25 @@ module.exports = function (app) {
       });
   })
   app.post("/api/postTags", function(req, res) {
-    db.Tags.create({
-      tagOne: req.body.tagOne,
-      tagTwo: req.body.tagTwo,
-      tagThree: req.body.tagThree,
-      tagFour: req.body.tagFour,
-      tagFive: req.body.tagFive,
-
-    })
+    const tagsArr = req.body.tags.split(",");
+    createTags(0, tagsArr, res);
   })
+
+  function createTags(i, dataArr, res) {
+    db.Tags.create({
+      tag: dataArr[i]
+    }).then(function(response) {
+      i++;
+      if (i < dataArr.length) {
+        createTags(i, dataArr, res)
+      }
+      else {
+        res.json(response);
+      }
+    }).catch(function(err) {
+      console.log(err);
+    })
+  }
   // Route for logging user out
   app.get("/logout", function (req, res) {
     req.logout();

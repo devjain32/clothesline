@@ -2,23 +2,7 @@
 module.exports = function (sequelize, DataTypes) {
     var Tags = sequelize.define("Tags", {
         // The email cannot be null, and must be a proper email before creation
-        tagOne: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        tagTwo: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        tagThree: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        tagFour: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        tagFive: {
+        tag: {
             type: DataTypes.STRING,
             allowNull: false
         }

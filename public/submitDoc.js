@@ -33,7 +33,7 @@ $(document).ready(function () {
             type: typeSelect.val().trim(),
             size: sizeSelect.val().trim(),
             gender: genderSelect.val().trim(),
-            tags: tagsInput.val().trim().split(","),
+            tags: tagsInput.val().trim(),
             forPurchase: forPurchaseInput.val().trim(),
         };
         console.log(clothesData)
@@ -42,7 +42,7 @@ $(document).ready(function () {
             clothesData.oneDay, clothesData.fourDay,
             clothesData.sevenDay, clothesData.price,
             clothesData.description, clothesData.type, clothesData.size,
-            clothesData.gender, clothesData.tags[0], clothesData.tags[1], clothesData.tags[2], clothesData.tags[3], clothesData.tags[4],
+            clothesData.gender, clothesData.tags,
             clothesData.forPurchase);
         //   name.val("");
         //   brand.val("");
@@ -58,7 +58,7 @@ $(document).ready(function () {
     });
 
     // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
-    function postClothes(name, brand, oneDay, fourDay, sevenDay, price, description, type, size, gender, tagOne, tagTwo, tagThree, tagFour, tagFive, forPurchase) {
+    function postClothes(name, brand, oneDay, fourDay, sevenDay, price, description, type, size, gender, tags, forPurchase) {
         $.post("/api/postClothes", {
             name: name,
             brand: brand,
@@ -71,11 +71,7 @@ $(document).ready(function () {
             size: size,
             gender: gender,
             forPurchase: forPurchase,
-            tagOne: tagOne,
-            tagTwo: tagTwo,
-            tagThree: tagThree,
-            tagFour: tagFour,
-            tagFive: tagFive,
+            tags: tags,
         })
             .then(function () {
                 window.alert("Thank you for posting to theClothesLine. We will notify you when someone is interested in your item.")
