@@ -22,22 +22,22 @@ $(document).ready(function () {
     var utCampusInput = $("input#utCampus");
     var anywhereInput = $("input#anywhere");
 
-    if (southAustinInput) {
+    if (southAustinInput === true) {
         locations.push("South Austin");
     }
-    if (northAustinInput) {
+    if (northAustinInput === true) {
         locations.push("North Austin");
     }
-    if (domainInput) {
+    if (domainInput === true) {
         locations.push("Domain");
     }
-    if (centralAustinInput) {
+    if (centralAustinInput === true) {
         locations.push("Central Austin");
     }
-    if (utCampusInput) {
+    if (utCampusInput === true) {
         locations.push("UT Campus Area");
     }
-    if (anywhereInput) {
+    if (anywhereInput === true) {
         locations.push("Anywhere");
     }
 

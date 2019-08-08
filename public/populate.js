@@ -5,7 +5,7 @@ $(document).ready(function () {
                 $(".singleProductsHere").append(`
                 <div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
                     <div class="product__thumb">
-                        <a class="first__img" href="/registration"><img src="images/books/1.jpg" alt="product image"></a>
+                        <a class="first__img" href="/registration"><img style="height: 400px; width: auto; display: block; margin: auto"src="${req[i].images[0]}" alt="product image"></a>
                         <div class="hot__box">
                             <span class="hot-label">${req[i].brand}</span>
                         </div>

@@ -6,7 +6,7 @@ $(document).ready(function () {
                 $(".whatttttt").append(`
                 <div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
                 <div class="product__thumb">
-                    <a data-toggle="modal" class="first__img" href="#productmodal${i}"><img src="${req[i].images[0]}"
+                    <a data-toggle="modal" class="first__img" href="#productmodal${i}"><img style="height: 270px; width: auto; display: block; margin: auto;"src="${req[i].images[0]}"
                             alt="product image"></a>
                     <!-- <a class="second__img animation1" href="#productmodal${i}"><img
                             src="images/books/2.jpg" alt="product image"></a> -->
@@ -57,6 +57,10 @@ $(document).ready(function () {
                 for (var j = 0; j < req[i].tags.length; j++) {
                     tagArea += `<li><a href="/tags/${req[i].tags[j]}">${req[i].tags[j]}</a></li>`
                 }
+                var locationsArea = "";
+                for (var k = 0; k < req[i].locations.length; k++) {
+                    locationsArea += `<li><a href="/locations/${req[i].locations[k]}">${req[i].locations[k]}</a></li>`
+                }
                 var forPurchaseArea = "";
                 console.log(req[i].forPurchase)
                 if (req[i].forPurchase === "yes") {
@@ -87,13 +91,13 @@ $(document).ready(function () {
                                     </ol>
                                     <div class="carousel-inner">
                                       <div class="carousel-item active">
-                                        <img style="height: 500px; width: 100%" src="${req[i].images[0]}" class="d-block w-100" alt="">
+                                        <img style="height: 500px; width: auto; display: block; margin: auto;" src="${req[i].images[0]}" class="d-block w-100" alt="">
                                       </div>
                                       <div class="carousel-item">
-                                        <img style="height: 500px; width: 100%" src="${req[i].images[1]}" class="d-block w-100" alt="">
+                                        <img style="height: 500px; width: auto; display: block; margin: auto;" src="${req[i].images[1]}" class="d-block w-100" alt="">
                                       </div>
                                       <div class="carousel-item">
-                                        <img style="height: 500px; width: 100%" src="${req[i].images[2]}" class="d-block w-100" alt="">
+                                        <img style="height: 500px; width: auto; display: block; margin: auto;" src="${req[i].images[2]}" class="d-block w-100" alt="">
                                       </div>
                                     </div>
                                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -140,14 +144,24 @@ $(document).ready(function () {
                                         <div class="select__color">
                                             <h2>Gender: ${req[i].gender}</h2> </br>
                                         </div>
+                                        <br>
+                                        <br>
+                                        <h5>Tags associated with the product <br>
+                                        (click to see more products with this tag): </h5>
                                         <div class="select__color">
                                             <aside class="wedget__categories poroduct--tag">
                                             <h3 class="wedget__title"></h3>
                                             <ul>
                                                 ${tagArea}
-                                            </ul>
-                                        </aside>
-            
+                                            </ul>            
+                                        </div>
+                                        <h5>Locations this renter is willing to drop to: </h5>
+                                        <div class="select__color">
+                                            <aside class="wedget__categories poroduct--tag">
+                                            <h3 class="wedget__title"></h3>
+                                            <ul>
+                                                ${locationsArea}
+                                            </ul>            
                                         </div>
                                         <div class="select__color">
                                             <h2>${forPurchaseArea}</h2>
