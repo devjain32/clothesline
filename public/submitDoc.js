@@ -33,33 +33,36 @@ $(document).ready(function () {
             type: typeSelect.val().trim(),
             size: sizeSelect.val().trim(),
             gender: genderSelect.val().trim(),
-            tags: tagsInput.val().trim(),
+            tags: tagsInput.val().trim().split(","),
             forPurchase: forPurchaseInput.val().trim(),
         };
         console.log(clothesData)
         // If we have an email and password we run the loginUser function and clear the form
-        postClothes(clothesData.name, clothesData.brand,
+        postclothes(clothesData.name, clothesData.brand,
             clothesData.oneDay, clothesData.fourDay,
             clothesData.sevenDay, clothesData.price,
             clothesData.description, clothesData.type, clothesData.size,
             clothesData.gender, clothesData.tags,
             clothesData.forPurchase);
-        //   name.val("");
-        //   brand.val("");
-        //   oneDay.val("");
-        //   fourDay.val("");
-        //   sevenDay.val("");
-        //   price.val("");
-        //   type.val("");
-        //   size.val("");
-        //   gender.val("");
-        //   tags.val("");
-        //   forPurchase.val("");
+
+        nameInput.val("");
+        brandInput.val("");
+        oneDayInput.val("");
+        fourDayInput.val("");
+        sevenDayInput.val("");
+        priceInput.val("");
+        typeSelect.val("");
+        sizeSelect.val("");
+        genderSelect.val("");
+        tagsInput.val("");
+        forPurchaseInput.val("");
+        tagsInput.val("");
+        descriptionInput.val("");
     });
 
     // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
-    function postClothes(name, brand, oneDay, fourDay, sevenDay, price, description, type, size, gender, tags, forPurchase) {
-        $.post("/api/postClothes", {
+    function postclothes(name, brand, oneDay, fourDay, sevenDay, price, description, type, size, gender, tags, forPurchase) {
+        $.post("/api/postclothes", {
             name: name,
             brand: brand,
             oneDay: oneDay,
@@ -70,8 +73,8 @@ $(document).ready(function () {
             type: type,
             size: size,
             gender: gender,
-            forPurchase: forPurchase,
             tags: tags,
+            forPurchase: forPurchase,
         })
             .then(function () {
                 window.alert("Thank you for posting to theClothesLine. We will notify you when someone is interested in your item.")

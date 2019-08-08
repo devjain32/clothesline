@@ -1,23 +1,25 @@
 // Requiring our models and passport as we've configured it
+require("dotenv").config();
 var db = require("../models");
-var passport = require("../config/passport");
+var passport = require("../config/passport.js");
 // var upload = multer({ dest: 'uploads/' });
 
-console.log("in file")
 module.exports = function (app) {
-  console.log("in module")
-  // Using the passport.authenticate middleware with our local strategy.
-  // If the user has valid login credentials, send them to the members page.
-  // Otherwise the user will be sent an error
-  app.post("/api/login", passport.authenticate("local"), function (req, res) {
-    res.json(req.user);
+
+  app.post("/api/login", function (req, res, next) {
+    console.log("Signing in user");
+    console.log(req.body);
+    next();
+  }, passport.authenticate("local", {
+    successRedirect: "/home",
+    failureRedirect: "/registration"
+  }), function (req, res) {
+    console.log("should show if logged");
+    res.redirect(307, "/shop");
   });
 
-  // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
-  // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
-  // otherwise send back an error
   app.post("/api/signup", function (req, res) {
-    
+
     db.User.create({
       name: req.body.name,
       email: req.body.email,
@@ -32,7 +34,8 @@ module.exports = function (app) {
         res.status(401).json(err);
       });
   });
-  app.post("/api/postClothes", function (req, res) {
+
+  app.post("/api/postclothes", function (req, res) {
     console.log(req);
     db.Clothes.create({
       name: req.body.name,
@@ -45,49 +48,27 @@ module.exports = function (app) {
       type: req.body.type,
       size: req.body.size,
       gender: req.body.gender,
-      forPurchase: req.body.forPurchase
+      tags: req.body.tags,
+      forPurchase: req.body.forPurchase,
+      listed: false
     }).then(function () {
-      res.redirect(307, "/api/postTags");
+      res.json("after" + req.body)
     })
       .catch(function (err) {
         res.status(401).json(err);
       });
   })
-  app.post("/api/postTags", function(req, res) {
-    const tagsArr = req.body.tags.split(",");
-    createTags(0, tagsArr, res);
-  })
 
-  function createTags(i, dataArr, res) {
-    db.Tags.create({
-      tag: dataArr[i]
-    }).then(function(response) {
-      i++;
-      if (i < dataArr.length) {
-        createTags(i, dataArr, res)
-      }
-      else {
-        res.json(response);
-      }
-    }).catch(function(err) {
-      console.log(err);
-    })
-  }
-  // Route for logging user out
   app.get("/logout", function (req, res) {
     req.logout();
     res.redirect("/home");
   });
 
-  // Route for getting some data about our user to be used client side
   app.get("/api/user_data", function (req, res) {
     console.log("in api")
     if (!req.user) {
-      // The user is not logged in, send back an empty object
       res.json({});
     } else {
-      // Otherwise send back the user's email and id
-      // Sending back a password, even a hashed password, isn't a good idea
       res.json({
         email: req.user.email,
         id: req.user.id
@@ -97,16 +78,43 @@ module.exports = function (app) {
   });
   app.get("/api/check", function (req, res) {
     if (!req.user) {
-      // The user is not logged in, send back an empty object
       res.json({});
     } else {
-      // Otherwise send back the user's email and id
-      // Sending back a password, even a hashed password, isn't a good idea
       res.json({
         status: true,
         name: req.user.name
       })
     }
+  });
 
+  app.get("/api/getAll", function (req, res) {
+    db.Clothes.find({})
+      .sort({ date: -1 })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
   })
+
+  app.use(twilioNotifications.notifyOnError);
+
+  const s3Config = {
+    accessKeyId: process.env.ACCESS_KEY,
+    secretAccessKey: process.env.SECRET_ACCESS_KEY,
+    Bucket: BUCKET_NAME
+  }
+
+  const S3 = new AWS.S3(s3Config);
+
+  app.post("/uploadPictures", function (req, res) {
+    S3.upload({
+      Bucket: BUCKET_NAME,
+      Key: req.files.file.name,
+      Body: req.files.file.data,
+      ContentType: req.files.file.mimetype
+    }, function (err, data) {
+      console.log(err);
+      console.log(data.Location)
+      res.json(data);
+    })
+  })
+
 };
