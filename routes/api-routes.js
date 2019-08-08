@@ -1,5 +1,6 @@
 // Requiring our models and passport as we've configured it
 require("dotenv").config();
+const AWS = require("aws-sdk");
 var db = require("../models");
 var passport = require("../config/passport.js");
 // var upload = multer({ dest: 'uploads/' });
@@ -50,7 +51,10 @@ module.exports = function (app) {
       gender: req.body.gender,
       tags: req.body.tags,
       forPurchase: req.body.forPurchase,
-      listed: false
+      images: req.body.images,
+      listed: false,
+      owner: req.user._id,
+      locations: req.body.locations
     }).then(function () {
       res.json("after" + req.body)
     })
@@ -94,27 +98,32 @@ module.exports = function (app) {
       .catch(err => res.status(422).json(err));
   })
 
-  app.use(twilioNotifications.notifyOnError);
-
+  // app.use(twilioNotifications.notifyOnError);
+  const BUCKET_NAME = process.env.AWS_BUCKET_NAME
   const s3Config = {
     accessKeyId: process.env.ACCESS_KEY,
     secretAccessKey: process.env.SECRET_ACCESS_KEY,
     Bucket: BUCKET_NAME
   }
-
   const S3 = new AWS.S3(s3Config);
-
-  app.post("/uploadPictures", function (req, res) {
+  app.post("/uploadpictures", function (req, res) {
+    console.log(req, res)
     S3.upload({
       Bucket: BUCKET_NAME,
       Key: req.files.file.name,
       Body: req.files.file.data,
       ContentType: req.files.file.mimetype
     }, function (err, data) {
-      console.log(err);
-      console.log(data.Location)
-      res.json(data);
+      console.log("Link to image: " + data.Location);
     })
   })
+
+  app.get("/clothes/:type", function(req, res) {
+    db.Clothes.find({
+      type: req.params.type
+    }).then
+  })
+
+
 
 };

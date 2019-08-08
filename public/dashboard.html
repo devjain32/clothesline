@@ -174,33 +174,33 @@
                             <aside class="wedget__categories poroduct--cat">
                                 <h3 class="wedget__title">Product Categories</h3>
                                 <ul>
-                                    <li><a href="#">Suit</a></li>
-                                    <li><a href="#">Shirt</a></li>
-                                    <li><a href="#">Blouse </a></li>
-                                    <li><a href="#">Footwear</a></li>
-                                    <li><a href="#">Dress</a></li>
-                                    <li><a href="#">Romper</a></li>
-                                    <li><a href="#">T-Shirt </a></li>
-                                    <li><a href="#">Pants </a></li>
-                                    <li><a href="#">Shorts</a></li>
-                                    <li><a href="#">Jeans</a></li>
-                                    <li><a href="#">Jewelry</a></li>
-                                    <li><a href="#">Jacket</a></li>
-                                    <li><a href="#">Other</a></li>
+                                    <li><a href="/clothes/suit">Suit</a></li>
+                                    <li><a href="/clothes/shirt">Shirt</a></li>
+                                    <li><a href="/clothes/blouse">Blouse </a></li>
+                                    <li><a href="/clothes/footwear">Footwear</a></li>
+                                    <li><a href="/clothes/dress">Dress</a></li>
+                                    <li><a href="/clothes/romper">Romper</a></li>
+                                    <li><a href="/clothes/tshirt">T-Shirt </a></li>
+                                    <li><a href="/clothes/pants">Pants </a></li>
+                                    <li><a href="/clothes/shorts">Shorts</a></li>
+                                    <li><a href="/clothes/jeans">Jeans</a></li>
+                                    <li><a href="/clothes/jewelry">Jewelry</a></li>
+                                    <li><a href="/clothes/jacket">Jacket</a></li>
+                                    <li><a href="/clothes/other">Other</a></li>
                                 </ul>
                             </aside>
                             <aside class="wedget__categories poroduct--tag">
                                 <h3 class="wedget__title">Product Tags</h3>
                                 <ul>
-                                    <li><a href="#">Casual</a></li>
-                                    <li><a href="#">Formal</a></li>
-                                    <li><a href="#">Linen</a></li>
-                                    <li><a href="#">Cotton</a></li>
-                                    <li><a href="#">Faded</a></li>
-                                    <li><a href="#">Party</a></li>
-                                    <li><a href="#">Retro</a></li>
-                                    <li><a href="#">Summer</a></li>
-                                    <li><a href="#">Warm</a></li>
+                                    <li><a href="/tags/casual">Casual</a></li>
+                                    <li><a href="/tags/formal">Formal</a></li>
+                                    <li><a href="/tags/linen">Linen</a></li>
+                                    <li><a href="/tags/cotton">Cotton</a></li>
+                                    <li><a href="/tags/faded">Faded</a></li>
+                                    <li><a href="/tags/party">Party</a></li>
+                                    <li><a href="/tags/retro">Retro</a></li>
+                                    <li><a href="/tags/summer">Summer</a></li>
+                                    <li><a href="/tags/warm">Warm</a></li>
                                 </ul>
                             </aside>
                         </div>
@@ -213,7 +213,8 @@
                                     <div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
                                         <div class="product__thumb">
                                             <a data-toggle="modal" class="first__img" href="#addmodal"><img
-                                                    src="https://static.thenounproject.com/png/84591-200.png" alt="product image"></a>
+                                                    src="https://static.thenounproject.com/png/84591-200.png"
+                                                    alt="product image"></a>
                                             <!-- <a data-toggle="modal" class="second__img animation1" href="addmodal"><img
                                                     src="images/books/2.jpg" alt="product image"></a> -->
                                             <div class="hot__box">
@@ -288,7 +289,7 @@
                                         </div>
                                     </div>  -->
                                     <!-- End Single Product -->
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -585,10 +586,134 @@
                                         </div>
                                     </form> -->
                                         <div class="product-images">
-                                            <div class="main-image images">
+                                            <!-- <div class="main-image images">
                                                 <img alt="big images" src="imagesLocal/imageshirtcloset.jpg">
+                                            </div> -->
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label for="imageOnly">A picture of the item (with a white,
+                                                            flat background)</label>
+                                                        <input type="file" class="form-control-file" id="imageOnly"
+                                                            enctype="multipart/form-data">
+                                                        <div class="invalid-feedback">This is a required field.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label for="imageFront">A picture of you wearing it from the
+                                                            front (recommended: keep your face out of the
+                                                            picture)</label>
+                                                        <input type="file" class="form-control-file" id="imageFront"
+                                                            enctype="multipart/form-data">
+                                                        <div class="invalid-feedback">This is a required field.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label for="imageBack">A picture of you wearing it from the
+                                                            back</label>
+                                                        <input type="file" class="form-control-file" id="imageBack"
+                                                            enctype="multipart/form-data">
+                                                        <div class="invalid-feedback">This is a required field.
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
+                                            <br>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" data-toggle="modal" class="btn btn-primary"
+                                                data-target="#exampleModalCenter">
+                                                Locations
+                                            </button>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalCenterTitle">
+                                                                Please select general areas you would be okay with
+                                                                dropping the product to...</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    id="southAustin">
+                                                                <label class="form-check-label" for="southAustin">
+                                                                    South Austin
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    id="northAustin">
+                                                                <label class="form-check-label" for="northAustin">
+                                                                    North Austin
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    id="domain">
+                                                                <label class="form-check-label" for="domain">
+                                                                    Domain
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    id="centralAustin">
+                                                                <label class="form-check-label" for="centralAustin">
+                                                                    Downtown/Central Austin
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    id="utCampus">
+                                                                <label class="form-check-label" for="utCampus">
+                                                                    UT
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    id="anywhere">
+                                                                <label class="form-check-label" for="anywhere">
+                                                                    Anywhere in Austin!
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                            <!-- <button type="button" class="btn btn-primary">Save
+                                                                changes</button> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <br>
+                                            <div class="col">
+                                                <label class="mr-sm-2" for="forPurchase">Some people wear it for a
+                                                    night
+                                                    and want it for good. Would you
+                                                    be okay with selling the item at the end of the renting
+                                                    period?</label>
+                                                <select class="custom-select col" id="forPurchase">
+                                                    <option selected>Choose...</option>
+                                                    <option value="yes">Yes</option>
+                                                    <option value="no">No</option>
+                                                </select>
+                                                <div class="invalid-feedback">This is a required field.</div>
+
+                                            </div>
+                                            <br>
                                         </div>
+
                                         <!-- end product images -->
                                         <div class="product-info">
                                             <form class="was-validated">
@@ -695,12 +820,22 @@
                                                     </div>
                                                 </div>
                                                 <br>
-                                                <div class="form-group">
-                                                    <textarea class="form-control" id="description" rows="3"></textarea>
+                                                <div class="form-row">
+                                                    <textarea
+                                                        placeholder="Insert information about the item here. Be sure to mention if it is true to fit or a little bigger or smaller than expected"
+                                                        class="form-control" id="description" rows="3"></textarea>
                                                     <div class="invalid-feedback">This is a required field.</div>
                                                 </div>
                                                 <br>
                                                 <div class="form-group">
+                                                    <h6>Some popular tags are <span style="color:green">casual</span>,
+                                                        <span style="color:green">formal</span>,
+                                                        <span style="color:green">party</span>, <span
+                                                            style="color:green">cotton</span>, <span
+                                                            style="color:green">linen</span>,
+                                                        <span style="color:green">warm</span>, <span
+                                                            style="color:green">faded</span>, <span
+                                                            style="color:green">retro</span></h6>
                                                     <input type="text" class="form-control" id="tags"
                                                         data-role="tagsinput"
                                                         placeholder="Insert 5 tags (press enter after each tag)">
@@ -715,49 +850,6 @@
                                                     be okay with selling the item at the end of the renting period?
                                                 </label>
                                             </div> -->
-                                                <div class="col">
-                                                    <label class="mr-sm-2" for="forPurchase">Some people wear it for a
-                                                        night
-                                                        and want it for good. Would you
-                                                        be okay with selling the item at the end of the renting
-                                                        period?</label>
-                                                    <select class="custom-select col" id="forPurchase">
-                                                        <option selected>Choose...</option>
-                                                        <option value="yes">Yes</option>
-                                                        <option value="no">No</option>
-                                                    </select>
-                                                    <div class="invalid-feedback">This is a required field.</div>
-                                                </div>
-                                                <br>
-                                                <div class="form-row">
-                                                    <div class="col">
-                                                        <div class="form-group">
-                                                            <label for="imageOnly">Just the item</label>
-                                                            <input type="file" class="form-control-file" id="imageOnly"
-                                                                enctype="multipart/form-data">
-                                                            <div class="invalid-feedback">This is a required field.
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="form-group">
-                                                            <label for="imageFront">Front picture wearing</label>
-                                                            <input type="file" class="form-control-file" id="imageFront"
-                                                                enctype="multipart/form-data">
-                                                            <div class="invalid-feedback">This is a required field.
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="form-group">
-                                                            <label for="imageBack">Back picture wearing</label>
-                                                            <input type="file" class="form-control-file" id="imageBack"
-                                                                enctype="multipart/form-data">
-                                                            <div class="invalid-feedback">This is a required field.
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                                 <br>
                                                 <button type="submit" class="btn btn-primary my-1"
                                                     style="background-color: black; color:white; border-radius: 0px; ">Post
@@ -777,7 +869,7 @@
         <!-- //Main wrapper -->
 
         <!-- JS Files -->
-        
+
         <script src="https://code.jquery.com/jquery-3.4.1.js"
             integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
         <script src="populateDashboard.js"></script>

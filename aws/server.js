@@ -17,7 +17,7 @@ app.use(fileupload());
 app.use(express.static("public"));
 
 app.post("/upload", function(req, res) {
-    //res.json(req.filesfile);
+    //res.json(req.ffilesfile);
     S3.upload({
         Bucket: BUCKET_NAME,
         Key: req.files.file.name,

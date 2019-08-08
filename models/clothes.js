@@ -16,7 +16,9 @@ const clothesSchema = new Schema({
     gender: { type: String, required: true },
     tags: { type: Array, required: false },
     images: { type: Array, required: true },
-    listed: { type: Boolean, required: true }
+    listed: { type: Boolean, required: true },
+    locations: { type: Array, required: true },
+    owner: { type: Schema.Types.ObjectId, ref: "User"}
 })
 
 const Clothes = mongoose.model("Clothes", clothesSchema);

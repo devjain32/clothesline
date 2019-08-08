@@ -1,11 +1,12 @@
 $(document).ready(function () {
     $.get("/api/getAll", {})
         .then(function (req, res) {
+            console.log(req, res)
             for (var i = 0; i < req.length; i++) {
                 $(".whatttttt").append(`
                 <div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
                 <div class="product__thumb">
-                    <a data-toggle="modal" class="first__img" href="#productmodal${i}"><img src="images/books/1.jpg"
+                    <a data-toggle="modal" class="first__img" href="#productmodal${i}"><img src="${req[i].images[0]}"
                             alt="product image"></a>
                     <!-- <a class="second__img animation1" href="#productmodal${i}"><img
                             src="images/books/2.jpg" alt="product image"></a> -->
@@ -54,7 +55,7 @@ $(document).ready(function () {
                 //var tagArea = req[i].tags.length;
                 var tagArea = "";
                 for (var j = 0; j < req[i].tags.length; j++) {
-                    tagArea += `<li><a href="#">${req[i].tags[j]}</a></li>`
+                    tagArea += `<li><a href="/tags/${req[i].tags[j]}">${req[i].tags[j]}</a></li>`
                 }
                 var forPurchaseArea = "";
                 console.log(req[i].forPurchase)
@@ -78,9 +79,32 @@ $(document).ready(function () {
                                 <div class="modal-product">
                                     <!-- Start product images -->
                                     <div class="product-images">
-                                        <div class="main-image images">
-                                            <img alt="big images" src="images/product/big-img/1.jpg">
-                                        </div>
+                                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                    <ol class="carousel-indicators">
+                                      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                    </ol>
+                                    <div class="carousel-inner">
+                                      <div class="carousel-item active">
+                                        <img style="height: 500px; width: 100%" src="${req[i].images[0]}" class="d-block w-100" alt="">
+                                      </div>
+                                      <div class="carousel-item">
+                                        <img style="height: 500px; width: 100%" src="${req[i].images[1]}" class="d-block w-100" alt="">
+                                      </div>
+                                      <div class="carousel-item">
+                                        <img style="height: 500px; width: 100%" src="${req[i].images[2]}" class="d-block w-100" alt="">
+                                      </div>
+                                    </div>
+                                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                      <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                      <span class="sr-only">Next</span>
+                                    </a>
+                                  </div>
                                     </div>
                                     <!-- end product images -->
                                     <div class="product-info">
@@ -98,9 +122,9 @@ $(document).ready(function () {
                                         <div class="price-box-3">
                                             <div class="s-price-box">
                                                 <span style="color:green;">One day: </span><span class="new-price">${req[i].oneDay}</span> 
-                                                <span style="color:green;">Four day: </span><span class="new-price">${req[i].oneDay}</span> 
-                                                <span style="color:green;">Seven day: </span><span class="new-price">${req[i].oneDay}</span> 
-                                                <span style="color:green;">Current market price: </span><span class="new-price">${req[i].oneDay}</span>
+                                                <span style="color:green;">Four day: </span><span class="new-price">${req[i].fourDay}</span> 
+                                                <span style="color:green;">Seven day: </span><span class="new-price">${req[i].sevenDay}</span>  </br>
+                                                <span style="color:green;">Current market price: </span><span class="new-price">${req[i].price}</span>
 
                                             </div>
                                         </div>

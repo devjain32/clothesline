@@ -8,7 +8,8 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const bodyParser = require("body-parser");
 const AWS = require("aws-sdk");
-
+app.use(fileupload());
+app.use(express.static("public"));
 
 // Define middleware here
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -34,7 +35,7 @@ require("./routes/html-routes.js")(app);
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/theclothesline");
 
 // Export configuration object
-module.exports = cfg;
+// module.exports = cfg;
 
 // Start the API server
 app.listen(PORT, function () {
