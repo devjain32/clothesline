@@ -7,7 +7,7 @@ const sendingNumber = process.env.TWILIO_NUMBER;
 const client = require("twilio")(accountSid, authToken);
 
 client.messages.create({
-    to: "+17134477611",
+    to: "+18325231603", //2812167644
     from: "+18324307084",
-    body: "TEST"
+    body: "Hello"
 }).then((message) => console.log(message.sid));

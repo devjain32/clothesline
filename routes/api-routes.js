@@ -92,7 +92,9 @@ module.exports = function (app) {
   });
 
   app.get("/api/getAll", function (req, res) {
-    db.Clothes.find({})
+    db.Clothes.find({
+      listed: false
+    })
       .sort({ date: 1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
@@ -118,7 +120,7 @@ module.exports = function (app) {
     })
   })
 
-  app.get("/clothes/:type", function(req, res) {
+  app.get("/api/:type", function(req, res) {
     db.Clothes.find({
       type: req.params.type
     }).sort({ date: 1 })
@@ -126,7 +128,4 @@ module.exports = function (app) {
     .catch(err => res.status(422).json(err));
 
   })
-
-
-
 };

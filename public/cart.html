@@ -92,8 +92,8 @@
 											<div class="switcher-options">
 												<div class="switcher-currency-trigger">
 													<div class="setting__menu">
-														<span><a href="/registration">Sign In</a></span>
-														<span><a href="/registration">Create An Account</a></span>
+														<div class="navStatus">
+														</div>
 													</div>
 												</div>
 											</div>
@@ -101,6 +101,7 @@
 									</div>
 								</div>
 							</li>
+							<div class="nameStatus"></div>
 						</ul>
 					</div>
 				</div>
@@ -160,7 +161,7 @@
 		</div>
 		<!-- End Search Popup -->
 		<!-- Start Bradcaump area -->
-		<div class="ht__bradcaump__area bg-image--3">
+		<div class="ht__bradcaump__area bg-image--10">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
@@ -192,36 +193,22 @@
 											<th class="product-price">Price</th>
 											<th class="product-quantity">Quantity</th>
 											<th class="product-subtotal">Total</th>
-											<th class="product-remove">Remove</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
+										<tr class="whereBuyingThingsGo">
 											<td class="product-thumbnail"><a href="#"><img
 														src="images/product/sm-3/1.jpg" alt="product img"></a></td>
 											<td class="product-name"><a href="#">Natoque penatibus</a></td>
 											<td class="product-price"><span class="amount">$165.00</span></td>
-											<td class="product-quantity"><input type="number" value="1"></td>
+											<td class="product-quantity"><select class="custom-select col"
+													id="numDays">
+													<option selected>Choose...</option>
+													<option value="one">1</option>
+													<option value="four">4</option>
+													<option value="seven">7</option>
+												</select></td>
 											<td class="product-subtotal">$165.00</td>
-											<td class="product-remove"><a href="#">X</a></td>
-										</tr>
-										<tr>
-											<td class="product-thumbnail"><a href="#"><img
-														src="images/product/sm-3/2.jpg" alt="product img"></a></td>
-											<td class="product-name"><a href="#">Quisque fringilla</a></td>
-											<td class="product-price"><span class="amount">$50.00</span></td>
-											<td class="product-quantity"><input type="number" value="1"></td>
-											<td class="product-subtotal">$50.00</td>
-											<td class="product-remove"><a href="#">X</a></td>
-										</tr>
-										<tr>
-											<td class="product-thumbnail"><a href="#"><img
-														src="images/product/sm-3/3.jpg" alt="product img"></a></td>
-											<td class="product-name"><a href="#">Vestibulum suscipit</a></td>
-											<td class="product-price"><span class="amount">$50.00</span></td>
-											<td class="product-quantity"><input type="number" value="1"></td>
-											<td class="product-subtotal">$50.00</td>
-											<td class="product-remove"><a href="#">X</a></td>
 										</tr>
 									</tbody>
 								</table>
@@ -230,15 +217,16 @@
 						<div class="cartbox__btn">
 							<ul
 								class="cart__btn__list d-flex flex-wrap flex-md-nowrap flex-lg-nowrap justify-content-between">
-								<li><a href="#">Coupon Code</a></li>
+								<!-- <li><a href="#">Hello</a></li>
 								<li><a href="#">Apply Code</a></li>
 								<li><a href="#">Update Cart</a></li>
-								<li><a href="#">Check Out</a></li>
+								<li><a href="#">Check Out</a></li> -->
+								<li><button>Reserve this item</button></li>
 							</ul>
 						</div>
 					</div>
 				</div>
-				<div class="row">
+				<!-- <div class="row">
 					<div class="col-lg-6 offset-lg-6">
 						<div class="cartbox__total__area">
 							<div class="cartbox-total d-flex justify-content-between">
@@ -257,7 +245,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 		<!-- cart-main-area end -->
@@ -310,7 +298,8 @@
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/plugins.js"></script>
 	<script src="js/active.js"></script>
-
+	<script src="isSignedIn.js"></script>
+	<script src="reserve.js"></script>
 </body>
 
 </html>

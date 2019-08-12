@@ -71,9 +71,11 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../public/mypage.html"))
   });
   app.get("/clothes/suit", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/dashboard.html"));
+    res.sendFile(path.join(__dirname, "../public/specific.html"));
   });
-
+  app.get("/reserve/", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/cart.html"));
+  });
   app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/index.html"));
   });

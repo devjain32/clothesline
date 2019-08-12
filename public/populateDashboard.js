@@ -21,10 +21,10 @@ $(document).ready(function () {
                 <div class="product__content content--center">
                     <h4><a href="#product-modal">${req[i].name}</a></h4>
                     <ul class="prize d-flex">
-                        <li>${req[i].oneDay}</li>
-                        <li>${req[i].fourDay}</li>
-                        <li>${req[i].sevenDay}</li>
-                        <li>${req[i].price}</li>
+                        <li>$${req[i].oneDay}</li>
+                        <li>$${req[i].fourDay}</li>
+                        <li>$${req[i].sevenDay}</li>
+                        <li>$${req[i].price}</li>
                     </ul>
                     <div class="action">
                         <div class="actions_inner">
@@ -83,11 +83,11 @@ $(document).ready(function () {
                                 <div class="modal-product">
                                     <!-- Start product images -->
                                     <div class="product-images">
-                                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                    <div id="carouselExampleIndicators${i}" class="carousel slide" data-ride="carousel">
                                     <ol class="carousel-indicators">
-                                      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                                      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                      <li data-target="#carouselExampleIndicators${i}" data-slide-to="0" class="active"></li>
+                                      <li data-target="#carouselExampleIndicators${i}" data-slide-to="1"></li>
+                                      <li data-target="#carouselExampleIndicators${i}" data-slide-to="2"></li>
                                     </ol>
                                     <div class="carousel-inner">
                                       <div class="carousel-item active">
@@ -100,12 +100,12 @@ $(document).ready(function () {
                                         <img style="height: 500px; width: auto; display: block; margin: auto;" src="${req[i].images[2]}" class="d-block w-100" alt="">
                                       </div>
                                     </div>
-                                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <a class="carousel-control-prev" href="#carouselExampleIndicators${i}" role="button" data-slide="prev">
+                                      <span class="carousel-control-prev-icon" aria-hidden="false"></span>
                                       <span class="sr-only">Previous</span>
                                     </a>
-                                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <a class="carousel-control-next" href="#carouselExampleIndicators${i}" role="button" data-slide="next">
+                                      <span class="carousel-control-next-icon" aria-hidden="false"></span>
                                       <span class="sr-only">Next</span>
                                     </a>
                                   </div>
@@ -125,10 +125,10 @@ $(document).ready(function () {
                                         </div>
                                         <div class="price-box-3">
                                             <div class="s-price-box">
-                                                <span style="color:green;">One day: </span><span class="new-price">${req[i].oneDay}</span> 
-                                                <span style="color:green;">Four day: </span><span class="new-price">${req[i].fourDay}</span> 
-                                                <span style="color:green;">Seven day: </span><span class="new-price">${req[i].sevenDay}</span>  </br>
-                                                <span style="color:green;">Current market price: </span><span class="new-price">${req[i].price}</span>
+                                                <span style="color:green;">One day: </span><span class="new-price">$${req[i].oneDay}</span> 
+                                                <span style="color:green;">Four day: </span><span class="new-price">$${req[i].fourDay}</span> 
+                                                <span style="color:green;">Seven day: </span><span class="new-price">$${req[i].sevenDay}</span>  </br>
+                                                <span style="color:green;">Current market price: </span><span class="new-price">$${req[i].price}</span>
 
                                             </div>
                                         </div>
@@ -166,9 +166,24 @@ $(document).ready(function () {
                                         <div class="select__color">
                                             <h2>${forPurchaseArea}</h2>
                                         </div>
-                                        <div class="addtocart-btn">
-                                            <a href="#">Reserve</a>
-                                        </div>
+                                        <br>
+                                        <form class="was-validated">
+                                            <div class="form-input>
+                                                <label for="numDays">Please choose the number of days you would like to reserve this item. 
+                                                    Once you press "Reserve", we will notify the owner of your interest and they will have a chance 
+                                                    to approve the request. When it's approved, you will be able to pay, and we will give you the owner's number.
+                                                </label>
+                                                <select class="form-control" id="numDays">
+                                                    <option selected>Days...</option>
+                                                    <option value = "one">1</option>
+                                                    <option value = "four">4</option>
+                                                    <option value = "seven">7</option>
+                                                </select>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary my-1" style="background-color: black; color:white; border-radius: 0px; ">
+                                                Reserve
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

@@ -22,24 +22,23 @@ $(document).ready(function () {
     var utCampusInput = $("input#utCampus");
     var anywhereInput = $("input#anywhere");
 
-    if (southAustinInput === true) {
-        locations.push("South Austin");
-    }
-    if (northAustinInput === true) {
-        locations.push("North Austin");
-    }
-    if (domainInput === true) {
-        locations.push("Domain");
-    }
-    if (centralAustinInput === true) {
-        locations.push("Central Austin");
-    }
-    if (utCampusInput === true) {
-        locations.push("UT Campus Area");
-    }
-    if (anywhereInput === true) {
-        locations.push("Anywhere");
-    }
+    var locationObj = {
+        "South Austin": false,
+        "North Austin": false,
+        "Domain": false,
+        "Central Austin": false,
+        "UT Campus Area": false,
+        "Anywhere": false
+    };
+
+    $(".form-check-input").on("click", function(event) {
+        console.log(event.target.value);
+        locationObj[event.target.value] = !locationObj[event.target.value];
+        console.log(locationObj);
+    });
+
+
+
 
     // var imageOnlyInput = $("input#imageOnly");
     // var imageFrontInput = $("input#imageFront");
@@ -82,7 +81,12 @@ $(document).ready(function () {
         fetch("/uploadpictures", {
             method: "POST",
             body: dataThree
-        }).then((response) => { })
+        }).then((response) => { });
+        for (prop in locationObj) {
+            if (locationObj[prop]) {
+                locations.push(prop);
+            }
+        }
         var clothesData = {
             name: nameInput.val().trim(),
             brand: brandInput.val().trim(),
