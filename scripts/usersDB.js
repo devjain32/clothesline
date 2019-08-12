@@ -14,7 +14,7 @@ const userSeed = [
       email: "devrjain32200@gmail.com",
       phoneNumber: 8325231603,
       password: "testing",
-      clothesPosted: []
+      clothes: []
   }
 ];
 
