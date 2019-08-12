@@ -70,7 +70,13 @@ module.exports = function (app) {
   app.get("/mainpage", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/mypage.html"))
   });
-  app.get("/clothes/suit", function (req, res) {
+  app.get("/clothes/:type", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/specific.html"));
+  });
+  app.get("/tags/:type", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/specific.html"));
+  });
+  app.get("/locations/:location", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/specific.html"));
   });
   app.get("/reserve/", function (req, res) {

@@ -1,6 +1,6 @@
 $(document).ready(function () {
-    var query = window.location.search.substring(1);
-    var vars = query.split("/");
+    // var query = window.location.search.substring(1);
+    // var vars = query.split("/");
     // for (var i=0;i<vars.length;i++) {
     //     var pair = vars[i].split("=");
     //     if(pair[0] == variable){
@@ -9,8 +9,13 @@ $(document).ready(function () {
     //         return false;
     //     }
     // }
-    var type = vars[2];
-    $.get("/api/" + type, {})
+    // var type = vars[2];
+    var type = window.location.pathname.split("/");
+    var lengthArr = type.length;
+    var typeOfSearch = type[lengthArr-2];
+    var searchTerm = window.location.pathname.split("/").pop();
+    console.log("/" + typeOfSearch + "/" + searchTerm);
+    $.get("/api/" + typeOfSearch + "/" + searchTerm)
         .then(function (req, res) {
             console.log(req, res)
             for (var i = 0; i < req.length; i++) {

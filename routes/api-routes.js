@@ -120,12 +120,29 @@ module.exports = function (app) {
     })
   })
 
-  app.get("/api/:type", function(req, res) {
+  app.get("/api/clothes/:type", function(req, res) {
+    console.log("In type api")
     db.Clothes.find({
       type: req.params.type
     }).sort({ date: 1 })
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));
 
+  })
+  app.get("/api/tags/:tags", function(req, res) {
+    console.log("In type api")
+    db.Clothes.find({
+      tags: req.params.tags
+    }).sort({ date: 1 })
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
+  })
+  app.get("/api/locations/:location", function(req, res) {
+    console.log("In type api")
+    db.Clothes.find({
+      locations: req.params.location
+    }).sort({ date: 1 })
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
   })
 };
