@@ -50,9 +50,11 @@ passport.use(new LocalStrategy({
           return done(err);
         }
         if(!user){
+          console.log("Incorrect email")
           return done(null, false, "Incorrect email");
         }
         if(!user.validPassword(password)){
+          console.log("Incorrect password")
           return done(null, false, "Incorrect password");
         }
         return done(null, user);
