@@ -15,6 +15,7 @@ $(document).ready(function () {
     var typeOfSearch = type[lengthArr-2];
     var searchTerm = window.location.pathname.split("/").pop();
     console.log("/" + typeOfSearch + "/" + searchTerm);
+    $(".bradcaump-title").html(`Searching in <span style="color:green">${typeOfSearch}</span> for <span style="color: #cb7a59">${searchTerm.replace(/%20/g, " ")}</span>`)
     $.get("/api/" + typeOfSearch + "/" + searchTerm)
         .then(function (req, res) {
             console.log(req, res)
