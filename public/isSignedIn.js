@@ -6,6 +6,7 @@ $(document).ready(function () {
                 console.log(res.name);
                 if (res.status) {
                     $(".navStatus").html(`
+                    <span><a href="/cart">Your Orders</a></span>
                     <span><a href="/logout">Sign Out</a></span>
                     `)
                     $(".textStatus").html(`Signed in`);

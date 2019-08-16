@@ -169,18 +169,23 @@ $(document).ready(function () {
                                         <br>
                                         <form class="was-validated">
                                             <div class="form-input>
-                                                <label for="numDays">Please choose the number of days you would like to reserve this item. 
+                                                <label for="numDays">Please choose the date you would like to reserve this item, an approximate time (note that this time is just to give the renter an idea of when you want it. It is not set in stone and you and the renter and change the time around whenever!), and the number of days you want it. 
                                                     Once you press "Reserve", we will notify the owner of your interest and they will have a chance 
                                                     to approve the request. When it's approved, you will be able to pay, and we will give you the owner's number.
                                                 </label>
-                                                <select class="form-control" id="numDays">
+                                                <br>
+                                                <input style="border-radius: 5px; padding-top: 8px; padding-bottom: 8px; padding-left: 5px;" type="datetime-local" name="reserveDate" id="reserveDate">
+                                                <br>
+                                                <br>
+                                                <select class="form-control" id = "numDays" >
                                                     <option selected>Days...</option>
-                                                    <option value = "one">1</option>
-                                                    <option value = "four">4</option>
-                                                    <option value = "seven">7</option>
-                                                </select>
+                                                    <option value="one day">1</option>
+                                                    <option value="four days">4</option>
+                                                    <option value="seven days">7</option>
+                                                </select >
                                             </div>
-                                            <button type="submit" class="btn btn-primary my-1" style="background-color: black; color:white; border-radius: 0px; ">
+                                            <br>
+                                            <button data-id=${req[i]._id} type="submit" class="btn btn-primary my-1" style="background-color: black; color:white; border-radius: 0px; ">
                                                 Reserve
                                             </button>
                                         </form>
@@ -205,4 +210,5 @@ $(document).ready(function () {
     // $.get("/api/getAll", {}).then(function { })
 })
 
-// $(".singleProductsHere")
+    // $(".singleProductsHere")
+

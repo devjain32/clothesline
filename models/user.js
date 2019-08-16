@@ -7,7 +7,8 @@ const userSchema = new Schema({
     email: { type: String, required: true },
     phoneNumber: { type: String, required: true },
     password: { type: String, required: true },
-    clothes: [{ type: Schema.Types.ObjectId, ref: "Clothes"}]
+    clothes: [{ type: Schema.Types.ObjectId, ref: "Clothes"}],
+    clothesReserved: [{  }]
 });
 
 userSchema.pre("save", function (next) {

@@ -79,8 +79,13 @@ module.exports = function (app) {
   app.get("/locations/:location", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/specific.html"));
   });
-  app.get("/reserve/", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/cart.html"));
+  app.get("/cart", function (req, res) {
+    if (req.user) {
+      res.sendFile(path.join(__dirname, "../public/cart.html"));    //redirect("/members.html");
+    }
+    else {
+      res.sendFile(path.join(__dirname, "../public/home.html"));
+    }
   });
   app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/index.html"));

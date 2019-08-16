@@ -28,12 +28,21 @@ $(document).ready(function () {
       email: email,
       password: password
     })
-      .then(function () {
+      .then(function (res) {
+        console.log(res);
         window.location.replace("/home");
         // If there's an error, log the error
       })
       .catch(function (err) {
         console.log(err);
+        if (res.status === 401) {
+          console.log("Incorrect email or password");
+          window.alert("Incorrect email or password");
+        }
+        else if (res.status >= 500) {
+          console.log("Internal server error. Please try again.");
+        }
+
       });
   }
 });

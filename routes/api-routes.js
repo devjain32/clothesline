@@ -12,8 +12,7 @@ module.exports = function (app) {
     console.log(req.body);
     next();
   }, passport.authenticate("local", {
-    successRedirect: "/home",
-    failureRedirect: "/registration"
+    successRedirect: "/home"
   }), function (req, res) {
     console.log("should show if logged");
     res.redirect(307, "/shop");
@@ -52,9 +51,11 @@ module.exports = function (app) {
       tags: req.body.tags,
       forPurchase: req.body.forPurchase,
       images: req.body.images,
-      listed: false,
+      // listed: false,
       owner: req.user._id,
-      locations: req.body.locations
+      locations: req.body.locations,
+      status: "listed",
+      possessionOf: "nobody"
     }).then(function () {
       res.json("after" + req.body)
     })
@@ -93,7 +94,7 @@ module.exports = function (app) {
 
   app.get("/api/getAll", function (req, res) {
     db.Clothes.find({
-      listed: false
+      status: "listed"
     })
       .sort({ date: 1 })
       .then(dbModel => res.json(dbModel))
@@ -120,29 +121,78 @@ module.exports = function (app) {
     })
   })
 
-  app.get("/api/clothes/:type", function(req, res) {
+  app.get("/api/clothes/:type", function (req, res) {
     console.log("In type api")
     db.Clothes.find({
+      status: "listed",
       type: req.params.type
     }).sort({ date: 1 })
-    .then(dbModel => res.json(dbModel))
-    .catch(err => res.status(422).json(err));
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
 
   })
-  app.get("/api/tags/:tags", function(req, res) {
+  app.get("/api/tags/:tags", function (req, res) {
     console.log("In type api")
     db.Clothes.find({
+      status: "listed",
       tags: req.params.tags
     }).sort({ date: 1 })
-    .then(dbModel => res.json(dbModel))
-    .catch(err => res.status(422).json(err));
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
   })
-  app.get("/api/locations/:location", function(req, res) {
+  app.get("/api/locations/:location", function (req, res) {
     console.log("In type api")
     db.Clothes.find({
       locations: req.params.location
     }).sort({ date: 1 })
-    .then(dbModel => res.json(dbModel))
-    .catch(err => res.status(422).json(err));
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  })
+  app.get("/api/owner/:owner", function (req, res) {
+    db.User.findById({
+      _id: req.params.owner
+    })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err))
+  })
+  ///api/changeToReserve/" + clothesId
+  app.post("/api/changeToReserve/:id", function (req, res) {
+    db.Clothes.findByIdAndUpdate({ _id: req.params.id }, { status: "pendingreserve" })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err))
+  })
+  app.get("/api/getreserved", function (req, res) {
+    db.Clothes.find({
+      status: "reserved"
+    })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err))
+  })
+  app.get("/api/getmyitems", function (req, res) {
+    db.Clothes.find({
+      owner: req.user._id
+    })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => {
+        console.log(err);
+        res.status(422).json(err);
+      });
+  })
+  app.get("/api/getothersitems", function (req, res) {
+    db.Clothes.find({
+      $or: [{possessionOf: req.user._id}, {beenRentedBy: req.user._id}]
+    })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => {
+        console.log(err);
+        res.status(422).json(err);
+      });
+  })
+  app.get("/api/:clothesId", function (req, res) {
+    db.Clothes.findById({
+      _id: req.params.clothesId
+    })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err))
   })
 };
